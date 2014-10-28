@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title></title>
+
+        <link type="text/css" rel="stylesheet" href="css/style.css">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
+    </head>
+
+    <body>
+
+        <header></header>
+        <main>
+            <div id="content-main">
+                <div id="table-container"></div>
+                <div id="list-container">
+                    <div class="form-group">
+                        <label>Input name of category:</label>
+                        <input type="text" class="newNameOfCategory form-control" id="newNameOfCategory"/>
+                    </div>
+                    <div id="category-container">
+                        <ul class="nav nav-pills nav-stacked"></ul>
+                    </div>
+                </div>
+            </div>
+            <div id="content-footer">
+                <input type="button" value="Send" class="btn-danger btn-lg"  id="send"/>
+                <input type="button" value="Order" class="btn-success btn-lg" id="order"/>
+            </div>
+        </main>
+        <footer></footer>
+
+        <!--Templates-->
+
+        <!--Template for one product-->
+        <script type="text/template" id="productTemplate">
+            <td>...</td>
+            <td><%=nameOfGoods%></td>
+            <td><%=category.get('categoryName')%></td>
+            <td><%=priceOfUnit%></td>
+            <td>...</td>
+            <td><%=numberOfGoods%></td>
+        </script>
+
+        <!--Template for table of goods-->
+        <script type="text/template" id="goodsTemplate">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Tare</th>
+                        <th>Number of units</th>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </script>
+        <!--Template for categories-->
+        <script type="text/template" id="categoriesTemplate">
+            <ul class="nav nav-pills nav-stacked" id="categoryList">
+                <li class="active"><a href="#">Home</a> </li>
+                <li><a href="#">Home1</a></li>
+                <li><a href="#">Home2</a></li>
+                <li><a href="#">Home3</a></li>
+            </ul>
+        </script>
+
+        <!--Template new category-->
+        <script type="text/template" id="newCategoryTemplate">
+            <a href="#"><%=categoryName%></a>
+        </script>
+
+        <!--Template for send orders-->
+        <script type="text/template" id="sendOrderTemplate">
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+                 aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header"> Send order</div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Input name of product:</label>
+                                <input type="text" class="nameOfProduct form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Input amount of product:</label>
+                                <input type="text" class="amountOfProd form-control"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" value="Send" class="btn-info sendOrder">
+                            <input type="button" value="Cancel" class="btn-info cancelModalWindow">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <!--Template for order products-->
+        <script type="text/template" id="insertProductTemplate">
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+                 aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header"></div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Input name of product:</label>
+                                <input type="text" class="nameOfProduct form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Choose category:</label>
+                                <select class="categoryTitle form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Input amount of product:</label>
+                                <input type="text" class="amountOfProduct form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Input price of product:</label>
+                                <input type="text" class="priceOfProduct form-control"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" value="Order" class="btn-info orderProduct">
+                            <input type="button" value="Cancel" class="btn-info cancelModalWindow">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <!--Template for generation list of product-->
+        <script type="text/template" id="selectOptionTemplate">
+            <option value="<%=cid%>">
+                <%=categoryName%>
+            </option>
+        </script>
+
+        <!--Frameworks-->
+        <script type="text/javascript" src="js/Frameworks/jquery.min.js"></script>
+        <script type="text/javascript" src="js/Frameworks/underscore.js"></script>
+        <script type="text/javascript" src="js/Frameworks/backbone.js"></script>
+        <script type="text/javascript" src="js/Frameworks/bootstrap/js/bootstrap.js"></script>
+
+        <!--Models-->
+        <script type="text/javascript" src="js/Models/GoodsModel.js"></script>
+        <script type="text/javascript" src="js/Models/CategoryModel.js"></script>
+        <script type="text/javascript" src="js/Models/TareModel.js"></script>
+
+        <!--Collections-->
+        <script type="text/javascript" src="js/Collections/GoodsCollection.js"></script>
+        <script type="text/javascript" src="js/Collections/CategoryCollection.js"></script>
+
+        <!--Views-->
+        <script type="text/javascript" src="js/Views/ProductView.js"></script>
+        <script type="text/javascript" src="js/Views/GoodsView.js"></script>
+        <script type="text/javascript" src="js/Views/SendOrderView.js"></script>
+        <script type="text/javascript" src="js/Views/OrderProductView.js"></script>
+        <script type="text/javascript" src="js/Views/CategoryView.js"></script>
+        <script type="text/javascript" src="js/Views/CategoriesView.js"></script>
+
+        <script type="text/javascript" src="js/App.js"></script>
+
+    </body>
+
+</html>
