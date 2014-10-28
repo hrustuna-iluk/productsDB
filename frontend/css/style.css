@@ -1,0 +1,25 @@
+main {
+    border: 1px solid ;
+    width: 1400px;
+    height: 400px;
+    margin-top: 10px;
+    margin-left: 50px;
+    text-align: center;
+    padding: 5px;
+}
+
+/*#content-main {
+    text-align: center;
+    clear: none;
+    padding: 5px;
+}
+*/
+#table-container{
+    width: 950px;
+    float:right;
+}
+
+#list-container{
+    width: 300px;
+}
+
